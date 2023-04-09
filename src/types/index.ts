@@ -4,5 +4,8 @@ export type AuthType = {
 };
 
 export type TodoType = {
-  title: string;
+  id: number;
+  todo: string;
+  isCompleted: boolean;
+  userId: string;
 };

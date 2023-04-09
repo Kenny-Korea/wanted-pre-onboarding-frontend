@@ -3,11 +3,13 @@ import { createTodo, getTodos } from "../api/todoAPIs";
 import { getAccessTokenFromLocalStorage } from "../utils/accessTokenHandler";
 
 const TodoInput = (props: any, ref: any) => {
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const accessToken = getAccessTokenFromLocalStorage();
     const todo = ref.current.value;
-    // console.log(ref.current.value);
-    createTodo(accessToken, todo);
+    if (accessToken && todo) {
+      const response = await createTodo(accessToken, todo);
+      return response === "success" ? "다시 getTodos 해주기" : "에러 메시지";
+    }
   };
   return (
     <>
