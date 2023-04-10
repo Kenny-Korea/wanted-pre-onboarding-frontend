@@ -7,23 +7,25 @@ import { getAccessTokenFromLocalStorage } from "../utils/accessTokenHandler";
 import { useFetch } from "../hooks/useFetch";
 
 const Todos = () => {
-  const [todos, setTodos] = useState<TodoType[] | null>([]);
-  const todoInput = useRef<HTMLInputElement>(null);
+  const [state, refetch] = useFetch(getTodos);
 
-  const result: TodoType[] | undefined = useFetch();
-  console.log(result);
+  const todoInput = useRef<HTMLInputElement>(null);
+  // const { loading, data, error } = state;
+
+  // const result = useFetch(getTodos);
+  // console.log(data);
 
   return (
     <>
       <h1>My TodoList</h1>
       <TodoInput ref={todoInput} />
-      {result && (
+      {/* {result && (
         <ul className="flex flex-col">
           {result?.map((todo) => (
             <Todo todo={todo} key={todo.id} />
           ))}
         </ul>
-      )}
+      )} */}
     </>
   );
 };
